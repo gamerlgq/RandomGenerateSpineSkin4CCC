@@ -1,0 +1,19 @@
+{
+  /* Base configuration. Do not edit this field. */
+  "extends": "./temp/tsconfig.cocos.json",
+
+  /* Add your custom configuration here. */
+  "compilerOptions": {
+    "strict": false,
+    /* 增加允许对包含默认导出的模块使用默认导入字段来解决 */
+    "allowSyntheticDefaultImports": true,
+    "types": [
+      "./temp/declarations/jsb",
+      "./temp/declarations/cc.env",
+      "./temp/declarations/cc.custom-macro",
+      "./temp/declarations/cc",
+      "./declarations/spine",
+      "./declarations/MHData",
+    ],
+  }
+}

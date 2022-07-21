@@ -1,0 +1,11 @@
+{
+  "name": "copy.json.files",
+  "version": "1.0.0",
+  "description": "conpy json files",
+  "main": "copyJsonFiles.js",
+  "scripts": {
+    "test": "node copyJsonFiles.js"
+  },
+  "author": "StevenGerrard",
+  "license": "ISC"
+}
