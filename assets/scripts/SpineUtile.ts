@@ -1,4 +1,4 @@
-import { error, sp } from "cc";
+import { error, sp, utils } from "cc";
 import { MHData } from "../../declarations/MHData";
 import { MainUI } from "./MainUI";
 
@@ -124,7 +124,11 @@ export class SpineUtile {
     }
 
     public static deleteSkin(skeleton:sp.Skeleton,suitId:number){
+        if (!SpineUtile.checkSkinIsExist(skeleton,suitId)){
+            return;
+        }
         const skins = skeleton.skeletonData.getRuntimeData().skins;
+        // SpineUtile.changeSkin(skeleton,skins[0].name);
         for (let index = skins.length - 1; index >= 0; index++) {
             const skin = skins[index];
             if (skin && skin.name == suitId.toString()){

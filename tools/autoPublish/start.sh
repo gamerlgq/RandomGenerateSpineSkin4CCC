@@ -1,16 +1,17 @@
 #/bin/bash
 root=$(cd "$(dirname "$0")";pwd)
 
+updateUtilPath=${root}/../copyJson
+${updateUtilPath}/start.sh
+
 engine_version=3.5.2
 cocoscreator=/Applications/CocosCreator/Creator/${engine_version}/CocosCreator.app/Contents/MacOS/CocosCreator
-echo ${cocoscreator}
+echo "cocoscreator : ${cocoscreator}"
 
 projectDir=${root}/../../
-echo ${projectDir}
+echo "projectDir : ${projectDir}"
 
 configPath=${root}/buildConfig_web-desktop.json
-echo ${configPath}
+echo "buildconfigPath : ${configPath}"
 
-# echo "${cocoscreator} --project ${projectDir} --build ${configPath}";
-
-${cocoscreator} --project ${prjectDir} --build ${configPath}
+${cocoscreator} --project ${projectDir} --build ${configPath}

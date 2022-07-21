@@ -206,6 +206,10 @@ export class MainUI extends Component {
     }
 
     onDeleteSuit(){
+        if (!this.suitConfigMap.has(this.suitID)){
+            return this._showTips(`套装${this.suitID}已删除！`);
+        }
+
         SpineUtile.deleteSkin(this.spine,this.suitID);
         this.suitConfigMap.delete(this.suitID);
         this._showTips(`删除套装${this.suitID}成功！`);
