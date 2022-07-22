@@ -135,11 +135,11 @@ class FileMgr{
             } else {
                 this.clearCanvas(_canvas);
             }
-            let ctx = _canvas.getContext('2d')!;
+            let ctx = _canvas.getContext('2d',{'alpha':true,'colorSpace':"display-p3"})!;
             let rowBytes = width * 4;
             for (let row = 0; row < height; row++) {
                 let sRow = height - 1 - row;
-                let imageData = ctx.createImageData(width, 1);
+                let imageData = ctx.createImageData(width, 1,{'colorSpace':"display-p3"});
                 let start = sRow * width * 4;
                 for (let i = 0; i < rowBytes; i++) {
                     imageData.data[i] = arrayBuffer[start + i];
@@ -257,7 +257,7 @@ class FileMgr{
     }
 
     private clearCanvas(canvas) {
-        let ctx = canvas.getContext('2d');
+        let ctx = canvas.getContext('2d',{'alpha':true,'colorSpace':"display-p3"});
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 }

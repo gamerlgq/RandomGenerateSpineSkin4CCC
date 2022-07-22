@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, sp, Camera, RenderTexture, view, SpriteFrame, Sprite, Size, sys, assetManager, ImageAsset, Texture2D, UITransform, v3 } from 'cc';
+import { _decorator, Component, Node, sp, Camera, RenderTexture, view, SpriteFrame, Sprite, Size, sys, assetManager, ImageAsset, Texture2D, UITransform, v3, Asset } from 'cc';
 import { fileMgr } from './FileManager';
 const { ccclass, property } = _decorator;
 
@@ -47,10 +47,9 @@ export class MainView extends Component {
         this.showImage(this._width, this._height);
         this.scheduleOnce(()=>{
             this.copyRenderTex(this.copyNode,true);
-            fileMgr.savaAsImage(Math.round(this._width),Math.round(this._height),this._buffer,'jpg',fileName);
+            fileMgr.savaAsImage(Math.round(this._width),Math.round(this._height),this._buffer,'.png',fileName);
             this.targetNode.active = true;
             this.copyNode.active = false;
-            console.log(assetManager.assets);
         },0.1)
     }
 
@@ -80,6 +79,11 @@ export class MainView extends Component {
             _compressed: false
         });
         let texture = new Texture2D();
+        texture.reset({
+            format: Texture2D.PixelFormat.RGBA8888,
+            width: width,
+            height: height
+        })
         texture.image = img;
 
         let sf = new SpriteFrame();

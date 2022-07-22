@@ -8,14 +8,14 @@ engine_version=3.5.2
 cocoscreator=/Applications/CocosCreator/Creator/${engine_version}/CocosCreator.app/Contents/MacOS/CocosCreator
 echo "cocoscreator : ${cocoscreator}"
 
-projectDir=${root}/../../
+projectDir=${root}/../..
 echo "projectDir : ${projectDir}"
 
-configPath=${root}/buildConfig_web-desktop.json
+configPath=${projectDir}/build/buildconfig/buildConfig_web-desktop.json
 echo "buildconfigPath : ${configPath}"
 
 #build web-desktop
-${cocoscreator} --project ${projectDir} --build ${configPath}
+${cocoscreator} --project ${projectDir} --build configPath=${configPath}
 
 #remove remote dir
 removeShell=/Users/stevengerrard/workspace/cocos/creator/3D/android_packer/android_packer_server/assets/tools/removeRemoteDir.sh

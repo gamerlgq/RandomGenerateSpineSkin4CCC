@@ -8,6 +8,8 @@ const { ccclass, property } = _decorator;
 
 const Default_Scale = 2.4;
 
+const Min_Skin_Index = 2;
+
 @ccclass('MainUI')
 export class MainUI extends Component {
 
@@ -51,9 +53,12 @@ export class MainUI extends Component {
 
     private isPlayerAnimation:boolean = null;
 
+    private currentIndex:number = null;
+
     start() {
         this.tips.enabled = false;
         this.isPlayerAnimation = false;
+        this.currentIndex = Min_Skin_Index;
         this.skinPartConfigMap = new Map();
         this.roleSkinConfigMap = new Map();
         this.suitConfigMap = new Map();
@@ -169,6 +174,35 @@ export class MainUI extends Component {
         SpineUtile.generateNewSkin(this.spine,defaultSuidId);
         this.suitID = defaultSuidId;
         this.suitEditBox.string = defaultSuidId.toString();
+    }
+
+    onPrevBtn(){
+        let index = this.currentIndex - 1;
+        index = index < Min_Skin_Index ? Min_Skin_Index : index;
+        const skin = SpineUtile.getSkinByIndex(this.spine,index);
+        if (!skin){
+            this.currentIndex = this.currentIndex;
+            const id = this.suitID - this.suitID % 1000;
+            this.suitID = id + this.currentIndex;
+            this._initSuit(this.suitID)
+            return
+        }
+        this.currentIndex = index;
+        this._initSuit(Number(skin.name))
+    }
+
+    onNextBtn(){
+        const index = this.currentIndex + 1;
+        const skin = SpineUtile.getSkinByIndex(this.spine,index);
+        if (!skin){
+            this.currentIndex = this.currentIndex;
+            const id = this.suitID - this.suitID % 1000;
+            this.suitID = id + this.currentIndex;
+            this._initSuit(this.suitID)
+            return
+        }
+        this.currentIndex = index;
+        this._initSuit(Number(skin.name))
     }
 
     onPlayAnimation(){

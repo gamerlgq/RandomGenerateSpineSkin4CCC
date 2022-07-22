@@ -138,4 +138,15 @@ export class SpineUtile {
         }
         console.log("deleteskins",skeleton.skeletonData.getRuntimeData().skins);
     }
+
+    public static getSkinByIndex(skeleton:sp.Skeleton,index:number):spine.Skin | null{
+        const skins = skeleton.skeletonData.getRuntimeData().skins;
+        if (skins){
+            const skin = skins[index];
+            if (skin){
+                this.changeSkin(skeleton,skin.name);
+                return skin;
+            }
+        }
+    }
 }
