@@ -32,6 +32,13 @@ B/5
   orig: 97, 243
   offset: 0, 0
   index: -1
+B/Socks
+  rotate: true
+  xy: 2115, 581
+  size: 109, 268
+  orig: 109, 268
+  offset: 0, 0
+  index: -1
 B/erduo
   rotate: true
   xy: 2, 5
@@ -100,13 +107,6 @@ B/taozhuang3
   xy: 2267, 349
   size: 79, 86
   orig: 79, 86
-  offset: 0, 0
-  index: -1
-B/taozhuangxia 
-  rotate: true
-  xy: 2115, 581
-  size: 109, 268
-  orig: 109, 268
   offset: 0, 0
   index: -1
 B/toushi

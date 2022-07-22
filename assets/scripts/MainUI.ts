@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, EditBox, sp, v3, UITransform, size, Sprite, view, Label, tween, color, resources, JsonAsset, warn, error, assetManager } from 'cc';
+import { _decorator, Component, Node, EditBox, sp, v3, UITransform, size, Sprite, view, Label, tween, color, resources, JsonAsset, warn, error, assetManager, Button } from 'cc';
 import { MHData } from '../../declarations/MHData';
 import { Canvas2Image } from './Canvas2Image';
 import { fileMgr } from './FileManager';
@@ -32,6 +32,9 @@ export class MainUI extends Component {
     @property(EditBox)
     suitNameEditBox:EditBox = null;
 
+    @property(Label)
+    lblPlayBtn:Label = null;
+
     public roleSkinConfigMap:Map<number,MHData.HeroSkin> = null;//<key:occID>
 
     public skinPartConfigMap:Map<number,MHData.Skin> = null;//<key:skinPartId>
@@ -46,8 +49,11 @@ export class MainUI extends Component {
 
     private suitName:string = null;
 
+    private isPlayerAnimation:boolean = null;
+
     start() {
         this.tips.enabled = false;
+        this.isPlayerAnimation = false;
         this.skinPartConfigMap = new Map();
         this.roleSkinConfigMap = new Map();
         this.suitConfigMap = new Map();
@@ -163,6 +169,19 @@ export class MainUI extends Component {
         SpineUtile.generateNewSkin(this.spine,defaultSuidId);
         this.suitID = defaultSuidId;
         this.suitEditBox.string = defaultSuidId.toString();
+    }
+
+    onPlayAnimation(){
+        this.isPlayerAnimation = !this.isPlayerAnimation;
+        if (this.isPlayerAnimation){
+            this.lblPlayBtn.string = '暂停';
+            this.spine.paused = false;
+            this.spine.setAnimation(0,'show',true);
+            return
+        }
+
+        this.lblPlayBtn.string = '播放';
+        this.spine.paused = true;
     }
 
     onGenerateClick(){

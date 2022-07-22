@@ -82,10 +82,10 @@ export class SpineUtile {
                         const slotData = slots[slotIndex];
                         newskin.setAttachment(slotIndex,slotData.attachmentName,attachment);
                     }else{
-                        error(`Can not find attachment for ${partId}`);
+                        error(`Can not find attachment for ${partId} Slot Name:${slotName}`);
                     }
                 }else{
-                    error(`Can not find slot for ${partId}`);
+                    error(`Can not find slot for ${partId} Slot Name:${slotName}`);
                 } 
             }
         }
