@@ -159,7 +159,7 @@ export class MainUI extends Component {
                 this.spine.skeletonData = asset;
                 this.spine.setAnimation(0,'show',false);
                 this.spine.defaultCacheMode = sp.Skeleton.AnimationCacheMode.PRIVATE_CACHE;
-                this.spine.premultipliedAlpha = false;
+                // this.spine.premultipliedAlpha = true;
                 resolve();
             })
             this.roleIDEditBox.string = roleId.toString();
@@ -181,7 +181,6 @@ export class MainUI extends Component {
         index = index < Min_Skin_Index ? Min_Skin_Index : index;
         const skin = SpineUtile.getSkinByIndex(this.spine,index);
         if (!skin){
-            this.currentIndex = this.currentIndex;
             const id = this.suitID - this.suitID % 1000;
             this.suitID = id + this.currentIndex;
             this._initSuit(this.suitID)
@@ -193,12 +192,12 @@ export class MainUI extends Component {
 
     onNextBtn(){
         const index = this.currentIndex + 1;
-        const skin = SpineUtile.getSkinByIndex(this.spine,index);
+        let skin = SpineUtile.getSkinByIndex(this.spine,index);
         if (!skin){
-            this.currentIndex = this.currentIndex;
-            const id = this.suitID - this.suitID % 1000;
-            this.suitID = id + this.currentIndex;
-            this._initSuit(this.suitID)
+            skin = SpineUtile.getLastSkin(this.spine);
+            this.suitID = Number(skin.name)+1;
+            this._initSuit(this.suitID);
+            this.currentIndex = this.suitID % 1000 + 1;
             return
         }
         this.currentIndex = index;

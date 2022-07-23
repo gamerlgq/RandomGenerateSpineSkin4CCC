@@ -149,4 +149,25 @@ export class SpineUtile {
             }
         }
     }
+    
+
+    public static getLastSkin(skeleton:sp.Skeleton):spine.Skin | null {
+        const skins = skeleton.skeletonData.getRuntimeData().skins;
+        if (skins){
+            const skin = skins[skins.length-1];
+            if (skin){
+                return skin;
+            }
+        }
+    }
+
+    public static getFirstSkin(skeleton:sp.Skeleton):spine.Skin{
+        const skins = skeleton.skeletonData.getRuntimeData().skins;
+        if (skins){
+            const skin = skins[2];
+            if (skin){
+                return skin;
+            }
+        }
+    }
 }
